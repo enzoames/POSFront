@@ -1,0 +1,66 @@
+/* =================================== */
+/* ============= SALON CSS ============= */
+/* =================================== */
+
+.salon-background{
+  background-color: white;
+}
+
+.passcode{
+  height: 700px;
+  background-color: white;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.number-box{
+  height: 80px;
+  border: 1px solid white;
+  background-color: #3b5998;
+  color: white;
+  cursor: pointer;
+}
+
+.input-box{
+  height: 70px;
+  border-radius: 20px;
+  margin-top: 30px;
+  border: 2px solid black;
+}
+
+.input-box-error{
+  height: 70px;
+  border-radius: 20px;
+  margin-top: 30px;
+  border: 2px solid #a94442;
+}
+
+.b-1{
+  border: 1px solid black;
+}
+
+.enter-passcode, .clear-passcode{
+  height: 80px;
+  color: white;
+  margin-top: 25px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.clear-passcode{
+  background-color: #a94442;
+}
+
+.enter-passcode{
+  background-color: #3b5998;
+}
+
+.l-s-5{
+  letter-spacing: 5px;
+}
+
+
+
+
+
+
