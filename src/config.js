@@ -17,8 +17,8 @@ module.exports = Object.assign({
   apiHost: process.env.APIHOST || 'http://localhost:8000/',
   apiPort: process.env.APIPORT || 'http://localhost:8000/',
   app: {
-    title: 'Start Beauty Nail Salon',
-    description: 'Start Beauty Nail Salon',
+    title: 'Star Beauty Nail Salon',
+    description: 'Star Beauty Nail Salon',
     head: {
       titleTemplate: 'SALON | %s',
       meta: [

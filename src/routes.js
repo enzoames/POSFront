@@ -7,6 +7,7 @@ import {
   NotRequireLogin,
   Salon,
   NotFound,
+  Service,
 } from 'containers';
 
 export default (store) => {
@@ -16,14 +17,19 @@ export default (store) => {
   return (
     <Route path="/" component={App}>
       {/* Routes */}
-      <Route component={NotRequireLogin}>
-        {/* Home (main) route */}
-        <IndexRoute component={Salon} />
-      </Route>
 
-      <Route component={RequireLogin}>
-        {/*<Route path="messages" component={Messages} />*/}
+      <IndexRoute component={Salon} />
+      <Route path="service" component={Service} />
+      
+      {/*<Route component={NotRequireLogin}>
+        {/* Home (main) route 
       </Route>
+       */}
+      {/*  
+      <Route component={RequireLogin}>
+        {/*<Route path="messages" component={Messages} />
+      </Route>
+      */}
 
       {/* Catch all other routes */}
       <Route path="*" component={NotFound} status={404} />

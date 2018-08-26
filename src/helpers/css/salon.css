@@ -1,6 +1,6 @@
-/* =================================== */
+/* ===================================== */
 /* ============= SALON CSS ============= */
-/* =================================== */
+/* ===================================== */
 
 .salon-background{
   background-color: white;
@@ -25,14 +25,14 @@
   height: 70px;
   border-radius: 20px;
   margin-top: 30px;
-  border: 2px solid black;
+  border: 5px solid #3b5998;
 }
 
 .input-box-error{
   height: 70px;
   border-radius: 20px;
   margin-top: 30px;
-  border: 2px solid #a94442;
+  border: 5px solid #a94442;
 }
 
 .b-1{
@@ -59,8 +59,77 @@
   letter-spacing: 5px;
 }
 
+.name-box{
+  height: 70px;
+  background: #eaeaee;
+  border-radius: 20px;
+  margin: 10px 0px;
+  cursor: pointer;
+}
+
+.name-box-selected{
+  height: 70px;
+  background: #3b5998;
+  border-radius: 20px;
+  margin: 10px 0px; 
+  color: white;
+  cursor: pointer;
+}
 
 
+/* ======================================= */
+/* ============= SERVICE CSS ============= */
+/* ======================================= */
 
+.top-banner{
+  min-height: 200px;
+  padding: 10px 0px;
+  margin-top: 10px;
+}
 
+.done-session{
+  height: 80px;
+  background-color: #3b5998;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.service-item{
+  height: 100px;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: #809ae5;
+}
+
+.back-btn{
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 0px;
+  border-top: 40px solid transparent;
+  border-right: 80px solid #3b5998;
+  border-bottom: 40px solid transparent;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.remove-btn{
+  background: #a94442;
+  height: 45px;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+}
+
+.remove-btn .glyphicon-remove{
+  font-size: 37px;
+  padding: 4px;
+}
+
+.receipt-total{
+  background-color: #47b049;
+  color: white;
+}
 

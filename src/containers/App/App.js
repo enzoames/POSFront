@@ -9,10 +9,6 @@ import Helmet from 'react-helmet';
 import { push } from 'react-router-redux';
 import config from 'config';
 import { asyncConnect } from 'redux-connect';
-
-import { isLoaded as isAuthLoaded, isTokenChecked } from 'redux/modules/auth';
-import { load as loadAuth, logoutRemoveUser as logout, checkToken } from '../../actions/Auth/actions';
-
 import { Footer } from 'components';
 
 import '../../helpers/app.css';
@@ -40,17 +36,18 @@ import 'react-select/dist/react-select.css';
 
 @connect(
   (state, ownProps) => ({
-    auth: state.auth,
+    // auth: state.auth,
+    salon: state.salon,
     params: ownProps.params,
     location: ownProps.location
   }),
-  { logout, checkToken, pushState: push })
+  { pushState: push }) // connects actions 
 
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
     auth: PropTypes.object,
-    logout: PropTypes.func.isRequired,
+    //logout: PropTypes.func.isRequired,
     pushState: PropTypes.func.isRequired
   };
 
@@ -59,45 +56,19 @@ export default class App extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    console.log("====> App.js PROPS: ", this.props);
-    console.log("====> App.js NEXTPROPS: ", nextProps);
-    const isLoggingIn = nextProps.auth.user ? (nextProps.auth.user.request_login && !nextProps.auth.user.request_load) : false;
-    const isLoading = nextProps.auth.user ? (!nextProps.auth.user.request_login && nextProps.auth.user.request_load): false;
-
-    if (!this.props.auth.user && nextProps.auth.user) {
-      if (isLoggingIn){
-        console.log(" -=-=-=-=- LOGGING IN -=-=-=-=- ");
-        this.props.pushState('/home'); 
-      }
-      else if (isLoading){
-        console.log(" -=-=-=-=- LOADING USER DETAILS -=-=-=-=- ");
-      }
-      else if (nextProps.auth.user.new_register){
-        console.log(" -=-=-=-=- NEWLY REGISTERED -=-=-=-=- ");
-        // debugger;
-        this.props.pushState('/home');
-      }
+    console.log("APP props", this.props);
+    console.log("APP nextProps", nextProps);
+    const login = !this.props.salon.user && !this.props.salon.loaded && nextProps.salon.user && nextProps.salon.loaded;
+    const logout = this.props.salon.user && this.props.salon.loaded && !nextProps.salon.user && !nextProps.salon.loaded;
+    if (login){
+      this.props.pushState('/service');
     }
-    else if (this.props.auth.user && !nextProps.auth.user) {
-      console.log(" -=-=-=-=- LOGGING OUT -=-=-=-=- ");
-      // debugger;
-      // this.props.pushState('/');
-      window.location.assign("http://localhost:7000/");
-      // window.location.reload();
+    else if (logout){
+      this.props.pushState(''); 
     }
-  }
-
-  handleLogout = (event) => {
-    //event.preventDefault();
-    this.props.logout();
-  };
-
-  componentDidMount(){
-    this.props.checkToken();
   }
 
   render() {
-    const { user } = this.props.auth;
     const styles = require('./App.scss');
 
     return (
@@ -108,7 +79,7 @@ export default class App extends Component {
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{ color: 'black' }}>
                 <div className={styles.brand} /> {/*  {styles.brand} */}
-                <span>START BEAUTY SALON</span>
+                <span>STAR BEAUTY SALON</span>
               </IndexLink>
             </Navbar.Brand>
             <Navbar.Toggle />
