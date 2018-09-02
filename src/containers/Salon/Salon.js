@@ -15,9 +15,14 @@ class Salon extends Component {
       passcode: '',
       error: false,
       passcodesArray: [
-        {name: 'Maria', passcode: '1234'},
-        {name: 'Patricia', passcode: '5678'},
-        {name: 'empty', passcode: '0000'},
+        { user: { 
+            name: 'Maria', 
+            id: 2
+          }, 
+          passcode: '1234'
+        },
+        {user: { name: 'Patricia', id: 3}, passcode: '5678'},
+        {user: { name: 'empty', id: 4}, passcode: '0000'},
       ],
       selectedArray: [
         { 'maria': false},
@@ -64,7 +69,7 @@ class Salon extends Component {
     const { passcodesArray, passcode} = this.state;
     let isAuthenticated = false;
     let user = ''
-    passcodesArray.map( (instance) => { if(instance.passcode == passcode) { isAuthenticated = true; user = instance.name} } );
+    passcodesArray.map( (instance) => { if(instance.passcode == passcode) { isAuthenticated = true; user = instance.user} } );
     isAuthenticated ? this.props.actions.loadUser(user) : this.setState({passcode: '', error: true })
   }
 

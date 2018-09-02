@@ -4,8 +4,8 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
-import { logout  } from 'actions/Auth/actions';
-import { Receipt, ServicePage } from 'components';
+import { logout, saveReceipt  } from 'actions/Auth/actions';
+import { Receipt, ServicePage, Loader } from 'components';
 
 class Service extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Service extends Component {
     }
   }
 
-  handleCloseSession = (e, total) => {
+  handleDoneSession = (e, total) => {
     const { receipt } = this.state;
     const { salon } = this.props;
     const result = {
@@ -24,6 +24,7 @@ class Service extends Component {
       total: total
     }
     console.log("\n\nTO SERVER RESULT", result);
+    this.props.actions.saveReceipt(result);
     this.props.actions.logout();
   }
 
@@ -39,21 +40,29 @@ class Service extends Component {
     this.setState({ receipt: result });
   }
 
+  handleCloseSession = () => {
+    this.props.actions.logout();
+  }
+
   render() {
     const { salon } = this.props;
     const { receipt } = this.state;
     return (
       <div>
         <Helmet title="Star Beauty" />
-          <ServicePage salon={salon} handleSelectedService={this.handleSelectedService} />
-          <Receipt salon={salon} receipt={receipt} handleCloseSession={this.handleCloseSession} handleRemoveItem={this.handleRemoveItem} />
+          {!salon.isPostingReceipt ?
+            <div>
+              <ServicePage salon={salon} handleSelectedService={this.handleSelectedService} handleCloseSession={this.handleCloseSession} />
+              <Receipt salon={salon} receipt={receipt} handleDoneSession={this.handleDoneSession} handleRemoveItem={this.handleRemoveItem} />
+            </div> : <h1>LOADING  . . . </h1>
+          }
       </div>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ logout }, dispatch)
+  actions: bindActionCreators({ logout, saveReceipt }, dispatch)
 });
 
 const mapStateToProps = (state) => ({

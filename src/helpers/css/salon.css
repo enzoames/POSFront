@@ -95,12 +95,21 @@
   cursor: pointer;
 }
 
+.close-session{
+  height: 80px;
+  background-color: #a94442;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 .service-item{
   height: 100px;
   color: white;
   border-radius: 20px;
   cursor: pointer;
   background-color: #809ae5;
+  padding: 0px 5px;
 }
 
 .back-btn{

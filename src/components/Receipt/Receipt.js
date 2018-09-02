@@ -1,17 +1,17 @@
 import React from 'react';
 import { Divider } from 'utils/LineComponents';
 
-const Receipt = ({salon, receipt, handleCloseSession, handleRemoveItem}) => {
+const Receipt = ({salon, receipt, handleDoneSession, handleRemoveItem}) => {
   const TOTAL = receipt.reduce( (accumulator, currentValue) => accumulator + currentValue.price, 0 ).toFixed(2);
   return(
     <div className="col-sm-4 col-md-4 p-0">
       <div className="col-sm-12 col-md-12 pop-genie top-banner">
         {/*TOP BAR*/}
         <div className="col-sm-6 col-md-6">
-          <h1 className="text-center">{salon.user}</h1>
+          <h1 className="text-center">{salon.user.name}</h1>
         </div>
         {receipt.length > 0 &&
-          <div className="col-sm-6 col-md-6" onClick={(e) => handleCloseSession(e, TOTAL)}>
+          <div className="col-sm-6 col-md-6" onClick={(e) => handleDoneSession(e, TOTAL)}>
             <div className="col-sm-12 col-md-12 done-session">
               <h1 className="text-center">DONE</h1>
             </div>
